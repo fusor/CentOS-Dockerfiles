@@ -5,9 +5,10 @@ MAINTAINER Dusty Mabe <dusty@dustymabe.com>
 RUN yum -y update && yum clean all
 
 # Install epel-release & then the rest
-RUN yum -y install epel-release     && \
-    yum -y install openssl npm node && \
+RUN yum -y install epel-release openssl && \
     yum clean all
+
+RUN curl -L https://nodejs.org/download/release/v0.10.48/node-v0.10.48-linux-x64.tar.gz | tar -xz --strip-components=1 -C /usr
 
 RUN mkdir /var/lib/etherpad
 WORKDIR   /var/lib/etherpad
